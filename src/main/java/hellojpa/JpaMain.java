@@ -49,9 +49,9 @@ public class JpaMain {
         } catch (Exception e) {
             transaction.rollback();
         } finally {
-            entityManager.close();
+            entityManager.close(); // 꼭 닫아 줘야 한다.
         }
 
-        hello.close();
+        hello.close(); // 필수적으로 닫아 줘야함
     }
 }
