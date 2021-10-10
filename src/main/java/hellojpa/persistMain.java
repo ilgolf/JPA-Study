@@ -49,6 +49,12 @@ public class persistMain {
             member = entityManager.find(Member.class, 150L);
             member.setName("zzzz"); // 영속 시킬 필요가 없다.
 
+            member = new Member(200L, "member200");
+            entityManager.persist(member);
+
+            entityManager.flush(); // 강제 쿼리문을 호출하여 DB에 커밋하기 전에 반영된다.
+            System.out.println("==================");
+
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();
