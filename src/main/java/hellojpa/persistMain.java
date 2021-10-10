@@ -49,6 +49,10 @@ public class persistMain {
             member = entityManager.find(Member.class, 150L);
             member.setName("zzzz"); // 영속 시킬 필요가 없다.
 
+            // 준 영속 상태로 만드는 방법
+            entityManager.clear(); // 영속성 컨텍스트를 통째로 날려 버린다. -> 캐시가 없으므로 쿼리가 전송되지 않는다.
+            entityManager.detach(member); // 영속성을 없애 준 영속상태로 만든다 -> UpdateQuery가 DB로 전송되지 않는다.
+
             member = new Member(200L, "member200");
             entityManager.persist(member);
 
